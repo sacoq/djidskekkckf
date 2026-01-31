@@ -57,6 +57,14 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        banner: {
+          dark: "hsl(var(--banner-dark))",
+          mid: "hsl(var(--banner-mid))",
+          primary: "hsl(var(--banner-primary))",
+          glow: "hsl(var(--banner-glow))",
+          accent: "hsl(var(--banner-accent))",
+          muted: "hsl(var(--banner-muted))",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
