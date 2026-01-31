@@ -114,12 +114,31 @@ All colors MUST be HSL.
     animation: pulse-slow 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   }
 
+  .animate-glow {
+    animation: glow 3s ease-in-out infinite;
+  }
+
+  .animate-glow-delayed {
+    animation: glow 3s ease-in-out infinite 1.5s;
+  }
+
   @keyframes pulse-slow {
     0%, 100% {
       opacity: 0.3;
     }
     50% {
       opacity: 0.6;
+    }
+  }
+
+  @keyframes glow {
+    0%, 100% {
+      opacity: 0.3;
+      transform: translateY(-50%) scale(1);
+    }
+    50% {
+      opacity: 0.6;
+      transform: translateY(-50%) scale(1.2);
     }
   }
 }

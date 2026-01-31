@@ -1,100 +1,77 @@
-import { Shield, Globe, Zap, Lock, Gift } from "lucide-react";
+import { useState, useEffect } from "react";
+import xankaLogo from "@/assets/xanka-logo.png";
 
 const VPNBanner = () => {
+  const [showSecondState, setShowSecondState] = useState(false);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setShowSecondState((prev) => !prev);
+    }, 4000); // Switch every 4 seconds
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <div className="banner-container w-full max-w-[1200px] mx-auto p-6 md:p-8 rounded-2xl relative overflow-hidden">
-      {/* Animated background effects */}
-      <div className="absolute inset-0 bg-gradient-to-r from-banner-dark via-banner-mid to-banner-dark" />
-      <div className="absolute inset-0 opacity-30">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-banner-glow rounded-full blur-[120px] animate-pulse-slow" />
-        <div className="absolute bottom-0 right-1/4 w-72 h-72 bg-banner-accent rounded-full blur-[100px] animate-pulse-slow" style={{ animationDelay: '1s' }} />
+    <div className="banner-wrapper w-full max-w-[900px] h-[120px] mx-auto rounded-xl relative overflow-hidden bg-banner-dark shadow-2xl shadow-black/50">
+      {/* Animated glow background */}
+      <div className="absolute inset-0">
+        <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-40 h-40 bg-red-500/30 rounded-full blur-[60px] animate-glow" />
+        <div className="absolute top-1/2 right-1/3 -translate-y-1/2 w-32 h-32 bg-orange-500/20 rounded-full blur-[50px] animate-glow-delayed" />
       </div>
-      
-      {/* Grid pattern overlay */}
-      <div className="absolute inset-0 opacity-10" style={{
-        backgroundImage: `linear-gradient(rgba(0,255,200,0.1) 1px, transparent 1px),
-                          linear-gradient(90deg, rgba(0,255,200,0.1) 1px, transparent 1px)`,
-        backgroundSize: '50px 50px'
-      }} />
 
-      <div className="relative z-10 flex flex-col lg:flex-row items-center gap-6 lg:gap-10">
-        {/* Left section - Main message */}
-        <div className="flex-1 text-center lg:text-left">
-          {/* Pain point */}
-          <div className="flex items-center justify-center lg:justify-start gap-2 mb-3">
-            <span className="text-2xl">🔇</span>
-            <p className="text-banner-muted text-lg font-medium">Интернет снова заглушили?</p>
+      {/* Content container */}
+      <div className="relative z-10 h-full flex items-center justify-center px-8">
+        {/* First State - Logo + Name + 7 days free */}
+        <div
+          className={`absolute inset-0 flex items-center justify-center gap-6 transition-all duration-700 ease-out ${
+            showSecondState
+              ? "opacity-0 transform -translate-x-full"
+              : "opacity-100 transform translate-x-0"
+          }`}
+        >
+          {/* Logo */}
+          <div className="relative flex-shrink-0">
+            <img
+              src={xankaLogo}
+              alt="xanka VPN"
+              className="h-20 w-auto object-contain drop-shadow-[0_0_20px_rgba(255,100,50,0.5)]"
+            />
           </div>
 
-          {/* Brand */}
-          <div className="flex items-center justify-center lg:justify-start gap-3 mb-4">
-            <div className="relative">
-              <Shield className="w-12 h-12 text-banner-primary" />
-              <div className="absolute inset-0 blur-lg bg-banner-primary opacity-50" />
-            </div>
-            <h1 className="text-4xl md:text-5xl font-bold">
+          {/* Text */}
+          <div className="flex flex-col items-start">
+            <h1 className="text-4xl md:text-5xl font-bold tracking-tight">
               <span className="text-banner-primary">xanka</span>
-              <span className="text-white">VPN</span>
+              <span className="text-white"> VPN</span>
             </h1>
+            <p className="text-banner-accent font-semibold text-lg mt-1 flex items-center gap-2">
+              🎁 7 дней бесплатно
+            </p>
           </div>
-
-          <p className="text-white text-xl md:text-2xl font-semibold mb-2">
-            Ваш стабильный доступ без границ
-          </p>
         </div>
 
-        {/* Center section - Features */}
-        <div className="flex-1 bg-white/5 backdrop-blur-sm rounded-xl p-4 border border-white/10">
-          <p className="text-banner-primary font-semibold mb-3 flex items-center gap-2">
-            <span className="text-lg">✅</span> Включено в подписку:
-          </p>
-          <ul className="space-y-2 text-white/90 text-sm md:text-base">
-            <li className="flex items-center gap-2">
-              <Lock className="w-4 h-4 text-banner-primary flex-shrink-0" />
-              <span>Обход глушилок и белых списков</span>
-            </li>
-            <li className="flex items-center gap-2">
-              <Globe className="w-4 h-4 text-banner-primary flex-shrink-0" />
-              <span>26 серверов по всему миру</span>
-            </li>
-            <li className="flex items-center gap-2">
-              <Zap className="w-4 h-4 text-banner-primary flex-shrink-0" />
-              <span>Высокая скорость, безлимит</span>
-            </li>
-            <li className="flex items-center gap-2">
-              <Shield className="w-4 h-4 text-banner-primary flex-shrink-0" />
-              <span>Защита и анонимность</span>
-            </li>
-          </ul>
-        </div>
-
-        {/* Right section - CTA */}
-        <div className="flex-shrink-0 text-center">
-          {/* Free trial */}
-          <div className="flex items-center justify-center gap-2 mb-2">
-            <Gift className="w-5 h-5 text-banner-accent" />
-            <span className="text-banner-accent font-bold text-lg">7 дней бесплатно</span>
-          </div>
-
-          {/* Price */}
-          <div className="bg-gradient-to-r from-banner-primary to-banner-glow text-banner-dark font-bold text-xl md:text-2xl px-6 py-3 rounded-xl mb-3 shadow-lg shadow-banner-primary/30">
-            от 69₽/мес
-          </div>
-
-          {/* CTA Button */}
-          <div className="flex flex-col items-center gap-1">
-            <div className="flex items-center gap-2 text-white/80 text-sm">
-              <Zap className="w-4 h-4 text-banner-accent" />
-              <span>Подключение за минуту</span>
-            </div>
-            <div className="bg-white/10 backdrop-blur-sm border border-banner-primary/50 rounded-lg px-4 py-2 hover:bg-banner-primary/20 transition-all cursor-pointer group">
-              <span className="text-banner-primary font-mono text-lg group-hover:text-white transition-colors">
-                ➡️ @xankaVPN_bot
-              </span>
-            </div>
+        {/* Second State - CTA */}
+        <div
+          className={`absolute inset-0 flex items-center justify-center px-8 transition-all duration-700 ease-out ${
+            showSecondState
+              ? "opacity-100 transform translate-x-0"
+              : "opacity-0 transform translate-x-full"
+          }`}
+        >
+          <div className="text-center">
+            <p className="text-white text-2xl md:text-3xl font-bold leading-tight">
+              <span className="text-banner-primary">Кликай</span> на баннер под трансляцией
+            </p>
+            <p className="text-banner-accent text-xl md:text-2xl font-semibold mt-1">
+              и забирай <span className="text-white">7 дней подписки</span> бесплатно! 🎁
+            </p>
           </div>
         </div>
       </div>
+
+      {/* Decorative border glow */}
+      <div className="absolute inset-0 rounded-xl border border-banner-primary/30 pointer-events-none" />
     </div>
   );
 };
