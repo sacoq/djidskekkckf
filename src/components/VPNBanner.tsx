@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import xankaLogo from "@/assets/xanka-logo.png";
+import cigaretteLogo from "@/assets/cigarette-clean.png";
 
 const VPNBanner = () => {
   const [showSecondState, setShowSecondState] = useState(false);
@@ -33,9 +33,9 @@ const VPNBanner = () => {
           {/* Logo */}
           <div className="relative flex-shrink-0">
             <img
-              src={xankaLogo}
+              src={cigaretteLogo}
               alt="xanka VPN"
-              className="h-20 w-auto object-contain drop-shadow-[0_0_20px_rgba(255,100,50,0.5)]"
+              className="h-24 w-auto object-contain drop-shadow-[0_0_25px_rgba(255,100,50,0.6)]"
             />
           </div>
 
