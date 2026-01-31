@@ -35,7 +35,7 @@ const VPNBanner = () => {
             <img
               src={cigaretteLogo}
               alt="xanka VPN"
-              className="h-24 w-auto object-contain drop-shadow-[0_0_25px_rgba(255,100,50,0.6)]"
+              className="h-28 w-auto object-contain drop-shadow-[0_0_30px_rgba(255,80,30,0.8)] animate-pulse-slow"
             />
           </div>
 
